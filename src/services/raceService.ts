@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { RaceResponse } from '../types/race';
 
-const API_URL = 'https://apihub.mikatiming.net/ah/rest/appapi/meetinginfo/meeting/9TG4PPOP36D/results/splits';
+const API_URL = '/ah/rest/appapi/meetinginfo/meeting/9TG4PPOP36D/results/splits';
 const API_KEY = process.env.REACT_APP_API_KEY;
 
 if (!API_KEY) {
