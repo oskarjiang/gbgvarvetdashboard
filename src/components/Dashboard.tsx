@@ -39,7 +39,6 @@ const Dashboard: React.FC = () => {
 
     return (
         <Box sx={{ 
-            minHeight: '100vh',
             bgcolor: 'background.default',
             py: 4
         }}>
@@ -49,11 +48,14 @@ const Dashboard: React.FC = () => {
                     sx={{ 
                         p: 4, 
                         mb: 4, 
-                        bgcolor: 'primary.main',
                         color: 'primary.contrastText',
                         borderRadius: 1,
                         position: 'relative',
                         overflow: 'hidden',
+                        backgroundImage: 'url(/bg-pattern.png)',
+                        backgroundSize: 'cover',
+                        backgroundPosition: 'center',
+                        backgroundRepeat: 'no-repeat',
                         '&::after': {
                             content: '""',
                             position: 'absolute',
@@ -74,7 +76,9 @@ const Dashboard: React.FC = () => {
                         sx={{ 
                             fontWeight: 600,
                             mb: 1,
-                            letterSpacing: '-0.02em'
+                            letterSpacing: '-0.02em',
+                            color: '#fff',
+                            textShadow: '0 2px 8px rgba(0,0,0,0.12)'
                         }}
                     >
                         Göteborgsvarvet 2025
@@ -85,7 +89,9 @@ const Dashboard: React.FC = () => {
                         sx={{ 
                             opacity: 0.9,
                             fontWeight: 500,
-                            letterSpacing: '-0.01em'
+                            letterSpacing: '-0.01em',
+                            color: '#fff',
+                            textShadow: '0 2px 8px rgba(0,0,0,0.12)'
                         }}
                     >
                         Live Runner Tracking

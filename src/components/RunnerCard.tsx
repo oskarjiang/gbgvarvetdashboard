@@ -49,6 +49,10 @@ const RunnerCard: React.FC<RunnerCardProps> = ({ runner }) => {
                     borderTopRightRadius: 'inherit',
                     position: 'relative',
                     overflow: 'hidden',
+                    backgroundImage: 'url(/bg-pattern.png)',
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                    backgroundRepeat: 'no-repeat',
                     '&::after': {
                         content: '""',
                         position: 'absolute',
