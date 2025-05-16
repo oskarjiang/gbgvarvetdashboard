@@ -25,6 +25,18 @@ const RunnerCard: React.FC<RunnerCardProps> = ({ runner }) => {
     const hasStarted = new Date(runner.startDateTime) <= new Date();
     const isRunning = hasStarted && !runner.finishTimeNet;
 
+    // Add Logikfabriken split
+    const splitsWithLogikfabriken = [
+        ...runner.splits,
+        {
+            key: 'logikfabriken',
+            name: 'Logikfabriken',
+            km: 16.6,
+            time: 0,
+            estimated: false
+        }
+    ].sort((a, b) => a.km - b.km);
+
     return (
         <Card 
             elevation={1}
@@ -191,7 +203,7 @@ const RunnerCard: React.FC<RunnerCardProps> = ({ runner }) => {
                                     </TableRow>
                                 </TableHead>
                                 <TableBody>
-                                    {runner.splits.map((split) => (
+                                    {splitsWithLogikfabriken.map((split) => (
                                         <TableRow 
                                             key={split.key}
                                             sx={{ 
@@ -199,7 +211,14 @@ const RunnerCard: React.FC<RunnerCardProps> = ({ runner }) => {
                                                 '&:last-child td, &:last-child th': { border: 0 },
                                                 '&:hover': {
                                                     bgcolor: 'action.hover'
-                                                }
+                                                },
+                                                ...(split.key === 'logikfabriken' && {
+                                                    backgroundImage: 'url(/bg-pattern.png)',
+                                                    backgroundSize: 'cover',
+                                                    backgroundPosition: 'center',
+                                                    backgroundRepeat: 'no-repeat',
+                                                    opacity: 0.9
+                                                })
                                             }}
                                         >
                                             <TableCell component="th" scope="row">
