@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Container, Typography, Box, CircularProgress, Grid } from '@mui/material';
+import { Container, Typography, Box, CircularProgress, Grid, Paper } from '@mui/material';
 import { fetchRaceData } from '../services/raceService';
 import { Runner } from '../types/race';
 import RunnerCard from './RunnerCard';
@@ -19,6 +19,7 @@ const Dashboard: React.FC = () => {
 
     const fetchData = async () => {
         try {
+            setLoading(true);
             const response = await fetchRaceData(PARTICIPANT_IDS);
             setRunners(response.results);
             setError(null);
@@ -32,39 +33,79 @@ const Dashboard: React.FC = () => {
 
     useEffect(() => {
         fetchData();
-        const interval = setInterval(fetchData, 30000); // Refresh every 30 seconds
+        const interval = setInterval(fetchData, 30000);
         return () => clearInterval(interval);
     }, []);
 
-    if (loading) {
-        return (
-            <Box display="flex" justifyContent="center" alignItems="center" minHeight="100vh">
-                <CircularProgress />
-            </Box>
-        );
-    }
-
-    if (error) {
-        return (
-            <Box display="flex" justifyContent="center" alignItems="center" minHeight="100vh">
-                <Typography color="error">{error}</Typography>
-            </Box>
-        );
-    }
-
     return (
-        <Container maxWidth="lg" sx={{ py: 4 }}>
-            <Typography variant="h3" component="h1" gutterBottom align="center">
-                Göteborgsvarvet 2025 Live Tracking
-            </Typography>
-            <Grid container spacing={3}>
-                {runners.map((runner) => (
-                    <Grid key={runner.idParticipant} xs={12} md={6}>
-                        <RunnerCard runner={runner} />
+        <Box sx={{ 
+            minHeight: '100vh',
+            bgcolor: 'background.default',
+            py: 4
+        }}>
+            <Container maxWidth="xl">
+                <Paper 
+                    elevation={0}
+                    sx={{ 
+                        p: 4, 
+                        mb: 4, 
+                        bgcolor: 'primary.main',
+                        color: 'primary.contrastText',
+                        borderRadius: 2
+                    }}
+                >
+                    <Typography 
+                        variant="h3" 
+                        component="h1" 
+                        gutterBottom 
+                        align="center" 
+                        sx={{ 
+                            fontWeight: 'medium',
+                            mb: 1
+                        }}
+                    >
+                        Göteborgsvarvet 2025
+                    </Typography>
+                    <Typography 
+                        variant="h5" 
+                        align="center" 
+                        sx={{ 
+                            opacity: 0.9,
+                            fontWeight: 'regular'
+                        }}
+                    >
+                        Live Runner Tracking
+                    </Typography>
+                </Paper>
+
+                {error && (
+                    <Paper 
+                        sx={{ 
+                            p: 2, 
+                            mb: 3, 
+                            bgcolor: 'error.light',
+                            color: 'error.contrastText'
+                        }}
+                    >
+                        <Typography>{error}</Typography>
+                    </Paper>
+                )}
+
+                {loading && runners.length === 0 ? (
+                    <Box display="flex" justifyContent="center" alignItems="center" minHeight="50vh">
+                        <CircularProgress />
+                    </Box>
+                ) : (
+                    <Grid container spacing={3}>
+                        {runners.map((runner) => (
+                            <Grid key={runner.idParticipant} xs={12} md={6} lg={4}>
+                                <RunnerCard runner={runner} />
+                            </Grid>
+                        ))}
                     </Grid>
-                ))}
-            </Grid>
-        </Container>
+                )}
+            </Container>
+        </Box>
     );
 };
 
