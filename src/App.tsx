@@ -1,26 +1,15 @@
 import React from 'react';
-import { ThemeProvider, createTheme, CssBaseline } from '@mui/material';
+import { ThemeProvider, CssBaseline } from '@mui/material';
 import Dashboard from './components/Dashboard';
+import theme from './theme';
 
-const theme = createTheme({
-  palette: {
-    mode: 'light',
-    primary: {
-      main: '#1976d2',
-    },
-    secondary: {
-      main: '#dc004e',
-    },
-  },
-});
-
-function App() {
+const App: React.FC = () => {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Dashboard />
     </ThemeProvider>
   );
-}
+};
 
 export default App;

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, CardContent, Typography, LinearProgress, Box, Grid, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Chip, Divider } from '@mui/material';
+import { Card, CardContent, Typography, LinearProgress, Box, Grid, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Chip } from '@mui/material';
 import { Runner } from '../types/race';
 
 interface RunnerCardProps {
@@ -25,17 +25,17 @@ const RunnerCard: React.FC<RunnerCardProps> = ({ runner }) => {
 
     return (
         <Card 
-            elevation={2}
+            elevation={1}
             sx={{ 
                 height: '100%',
                 display: 'flex',
                 flexDirection: 'column',
-                transition: 'all 0.3s ease-in-out',
+                transition: 'all 0.2s ease-in-out',
                 border: '1px solid',
                 borderColor: 'divider',
                 '&:hover': {
-                    transform: 'translateY(-4px)',
-                    boxShadow: 6,
+                    transform: 'translateY(-2px)',
+                    boxShadow: '0px 4px 8px rgba(9, 30, 66, 0.25)',
                     borderColor: 'primary.main',
                 }
             }}
@@ -47,14 +47,27 @@ const RunnerCard: React.FC<RunnerCardProps> = ({ runner }) => {
                     color: 'primary.contrastText',
                     borderTopLeftRadius: 'inherit',
                     borderTopRightRadius: 'inherit',
+                    position: 'relative',
+                    overflow: 'hidden',
+                    '&::after': {
+                        content: '""',
+                        position: 'absolute',
+                        top: 0,
+                        right: 0,
+                        bottom: 0,
+                        left: 0,
+                        background: 'linear-gradient(45deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 100%)',
+                        pointerEvents: 'none'
+                    }
                 }}
             >
                 <Typography 
                     variant="h5" 
                     component="div" 
                     sx={{ 
-                        fontWeight: 'medium',
+                        fontWeight: 600,
                         mb: 1,
+                        letterSpacing: '-0.01em'
                     }}
                 >
                     {runner.displayName}
@@ -66,7 +79,7 @@ const RunnerCard: React.FC<RunnerCardProps> = ({ runner }) => {
                         color="primary" 
                         variant="filled"
                         sx={{ 
-                            fontWeight: 'medium',
+                            fontWeight: 500,
                             bgcolor: 'rgba(255, 255, 255, 0.2)',
                             '&:hover': {
                                 bgcolor: 'rgba(255, 255, 255, 0.3)',
@@ -79,7 +92,7 @@ const RunnerCard: React.FC<RunnerCardProps> = ({ runner }) => {
                         color="secondary" 
                         variant="filled"
                         sx={{ 
-                            fontWeight: 'medium',
+                            fontWeight: 500,
                             bgcolor: 'rgba(255, 255, 255, 0.2)',
                             '&:hover': {
                                 bgcolor: 'rgba(255, 255, 255, 0.3)',
@@ -105,11 +118,11 @@ const RunnerCard: React.FC<RunnerCardProps> = ({ runner }) => {
                                 variant="determinate" 
                                 value={progress} 
                                 sx={{ 
-                                    height: 10, 
-                                    borderRadius: 5,
+                                    height: 8, 
+                                    borderRadius: 1,
                                     bgcolor: 'action.hover',
                                     '& .MuiLinearProgress-bar': {
-                                        borderRadius: 5,
+                                        borderRadius: 1,
                                         bgcolor: 'primary.main'
                                     }
                                 }}
@@ -121,8 +134,9 @@ const RunnerCard: React.FC<RunnerCardProps> = ({ runner }) => {
                             variant="subtitle1" 
                             sx={{ 
                                 mb: 1,
-                                fontWeight: 'medium',
-                                color: 'text.primary'
+                                fontWeight: 500,
+                                color: 'text.primary',
+                                letterSpacing: '-0.01em'
                             }}
                         >
                             Split Times
@@ -140,10 +154,10 @@ const RunnerCard: React.FC<RunnerCardProps> = ({ runner }) => {
                             <Table size="small">
                                 <TableHead>
                                     <TableRow>
-                                        <TableCell sx={{ fontWeight: 'medium', bgcolor: 'action.hover' }}>Split</TableCell>
-                                        <TableCell align="right" sx={{ fontWeight: 'medium', bgcolor: 'action.hover' }}>Distance</TableCell>
-                                        <TableCell align="right" sx={{ fontWeight: 'medium', bgcolor: 'action.hover' }}>Time</TableCell>
-                                        <TableCell align="right" sx={{ fontWeight: 'medium', bgcolor: 'action.hover' }}>Status</TableCell>
+                                        <TableCell sx={{ fontWeight: 500, bgcolor: 'action.hover' }}>Split</TableCell>
+                                        <TableCell align="right" sx={{ fontWeight: 500, bgcolor: 'action.hover' }}>Distance</TableCell>
+                                        <TableCell align="right" sx={{ fontWeight: 500, bgcolor: 'action.hover' }}>Time</TableCell>
+                                        <TableCell align="right" sx={{ fontWeight: 500, bgcolor: 'action.hover' }}>Status</TableCell>
                                     </TableRow>
                                 </TableHead>
                                 <TableBody>
@@ -170,8 +184,9 @@ const RunnerCard: React.FC<RunnerCardProps> = ({ runner }) => {
                                                     color={split.time > 0 ? 'success' : 'default'}
                                                     variant={split.time > 0 ? 'filled' : 'outlined'}
                                                     sx={{ 
-                                                        fontWeight: 'medium',
-                                                        minWidth: 80
+                                                        fontWeight: 500,
+                                                        minWidth: 80,
+                                                        borderRadius: 1
                                                     }}
                                                 />
                                             </TableCell>

@@ -51,7 +51,19 @@ const Dashboard: React.FC = () => {
                         mb: 4, 
                         bgcolor: 'primary.main',
                         color: 'primary.contrastText',
-                        borderRadius: 2
+                        borderRadius: 1,
+                        position: 'relative',
+                        overflow: 'hidden',
+                        '&::after': {
+                            content: '""',
+                            position: 'absolute',
+                            top: 0,
+                            right: 0,
+                            bottom: 0,
+                            left: 0,
+                            background: 'linear-gradient(45deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 100%)',
+                            pointerEvents: 'none'
+                        }
                     }}
                 >
                     <Typography 
@@ -60,8 +72,9 @@ const Dashboard: React.FC = () => {
                         gutterBottom 
                         align="center" 
                         sx={{ 
-                            fontWeight: 'medium',
-                            mb: 1
+                            fontWeight: 600,
+                            mb: 1,
+                            letterSpacing: '-0.02em'
                         }}
                     >
                         Göteborgsvarvet 2025
@@ -71,7 +84,8 @@ const Dashboard: React.FC = () => {
                         align="center" 
                         sx={{ 
                             opacity: 0.9,
-                            fontWeight: 'regular'
+                            fontWeight: 500,
+                            letterSpacing: '-0.01em'
                         }}
                     >
                         Live Runner Tracking
@@ -84,7 +98,8 @@ const Dashboard: React.FC = () => {
                             p: 2, 
                             mb: 3, 
                             bgcolor: 'error.light',
-                            color: 'error.contrastText'
+                            color: 'error.contrastText',
+                            borderRadius: 1
                         }}
                     >
                         <Typography>{error}</Typography>
@@ -93,7 +108,7 @@ const Dashboard: React.FC = () => {
 
                 {loading && runners.length === 0 ? (
                     <Box display="flex" justifyContent="center" alignItems="center" minHeight="50vh">
-                        <CircularProgress />
+                        <CircularProgress sx={{ color: 'primary.main' }} />
                     </Box>
                 ) : (
                     <Grid container spacing={3}>
