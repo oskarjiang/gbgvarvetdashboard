@@ -217,7 +217,11 @@ const RunnerCard: React.FC<RunnerCardProps> = ({ runner }) => {
                                                     backgroundSize: 'cover',
                                                     backgroundPosition: 'center',
                                                     backgroundRepeat: 'no-repeat',
-                                                    opacity: 0.9
+                                                    opacity: 0.9,
+                                                    color: '#fff',
+                                                    '& td, & th': {
+                                                        color: '#fff'
+                                                    }
                                                 })
                                             }}
                                         >
@@ -227,17 +231,19 @@ const RunnerCard: React.FC<RunnerCardProps> = ({ runner }) => {
                                             <TableCell align="right">{split.km.toFixed(2)} km</TableCell>
                                             <TableCell align="right">{formatTime(split.time)}</TableCell>
                                             <TableCell align="right">
-                                                <Chip 
-                                                    label={split.time > 0 ? 'Completed' : 'Pending'} 
-                                                    size="small"
-                                                    color={split.time > 0 ? 'success' : 'default'}
-                                                    variant={split.time > 0 ? 'filled' : 'outlined'}
-                                                    sx={{ 
-                                                        fontWeight: 500,
-                                                        minWidth: 80,
-                                                        borderRadius: 1
-                                                    }}
-                                                />
+                                                {split.key !== 'logikfabriken' && (
+                                                    <Chip 
+                                                        label={split.time > 0 ? 'Completed' : 'Pending'} 
+                                                        size="small"
+                                                        color={split.time > 0 ? 'success' : 'default'}
+                                                        variant={split.time > 0 ? 'filled' : 'outlined'}
+                                                        sx={{ 
+                                                            fontWeight: 500,
+                                                            minWidth: 80,
+                                                            borderRadius: 1
+                                                        }}
+                                                    />
+                                                )}
                                             </TableCell>
                                         </TableRow>
                                     ))}
