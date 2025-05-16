@@ -74,14 +74,17 @@ const Dashboard: React.FC = () => {
     return (
         <Box sx={{ 
             bgcolor: 'background.default',
-            py: 4
+            py: 4,
+            minHeight: '100vh',
+            display: 'flex',
+            flexDirection: 'column'
         }}>
-            <Container maxWidth="xl">
+            <Container maxWidth={false} sx={{ px: { xs: 4, sm: 6, md: 8, lg: 10 } }}>
                 <Paper 
                     elevation={0}
                     sx={{ 
-                        p: 4, 
-                        mb: 4, 
+                        p: 6, 
+                        mb: 6, 
                         color: 'primary.contrastText',
                         borderRadius: 1,
                         position: 'relative',
@@ -103,13 +106,13 @@ const Dashboard: React.FC = () => {
                     }}
                 >
                     <Typography 
-                        variant="h3" 
+                        variant="h2" 
                         component="h1" 
                         gutterBottom 
                         align="center" 
                         sx={{ 
                             fontWeight: 600,
-                            mb: 1,
+                            mb: 2,
                             letterSpacing: '-0.02em',
                             color: '#fff',
                             textShadow: '0 2px 8px rgba(0,0,0,0.12)'
@@ -118,7 +121,7 @@ const Dashboard: React.FC = () => {
                         Göteborgsvarvet 2025
                     </Typography>
                     <Typography 
-                        variant="h5" 
+                        variant="h4" 
                         align="center" 
                         sx={{ 
                             opacity: 0.9,
@@ -126,7 +129,7 @@ const Dashboard: React.FC = () => {
                             letterSpacing: '-0.01em',
                             color: '#fff',
                             textShadow: '0 2px 8px rgba(0,0,0,0.12)',
-                            mb: 1
+                            mb: 2
                         }}
                     >
                         Live Runner Tracking
@@ -153,12 +156,14 @@ const Dashboard: React.FC = () => {
                         <CircularProgress sx={{ color: 'primary.main' }} />
                     </Box>
                 ) : (
-                    <Grid container spacing={3}>
-                        {runners.map((runner) => (
-                            <Grid key={runner.idParticipant} xs={12} md={6} lg={4}>
-                                <RunnerCard runner={runner} />
-                            </Grid>
-                        ))}
+                    <Grid container spacing={4}>
+                        {[...runners]
+                            .sort((a, b) => new Date(a.startDateTime).getTime() - new Date(b.startDateTime).getTime())
+                            .map((runner) => (
+                                <Grid key={runner.idParticipant} xs={12} md={6} lg={4} xl={2.4}>
+                                    <RunnerCard runner={runner} />
+                                </Grid>
+                            ))}
                     </Grid>
                 )}
             </Container>

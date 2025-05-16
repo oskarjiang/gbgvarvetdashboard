@@ -56,7 +56,7 @@ const RunnerCard: React.FC<RunnerCardProps> = ({ runner }) => {
         >
             <Box
                 sx={{
-                    p: 2,
+                    p: 3,
                     bgcolor: hasStarted ? 'success.main' : 'primary.main',
                     color: 'primary.contrastText',
                     borderTopLeftRadius: 'inherit',
@@ -79,13 +79,14 @@ const RunnerCard: React.FC<RunnerCardProps> = ({ runner }) => {
                     }
                 }}
             >
-                <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', mb: 1 }}>
+                <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', mb: 2 }}>
                     <Typography 
                         variant="h5" 
                         component="div" 
                         sx={{ 
                             fontWeight: 600,
-                            letterSpacing: '-0.01em'
+                            letterSpacing: '-0.01em',
+                            fontSize: '1.5rem'
                         }}
                     >
                         {runner.displayName}
@@ -105,16 +106,17 @@ const RunnerCard: React.FC<RunnerCardProps> = ({ runner }) => {
                     />
                 </Box>
                 <Typography 
-                    variant="body2" 
+                    variant="body1" 
                     sx={{ 
-                        mb: 1,
+                        mb: 2,
                         opacity: 0.9,
-                        fontWeight: 500
+                        fontWeight: 500,
+                        fontSize: '1.1rem'
                     }}
                 >
                     Start: {new Date(runner.startDateTime).toLocaleTimeString()}
                 </Typography>
-                <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap' }}>
+                <Box sx={{ display: 'flex', gap: 1.5, flexWrap: 'wrap' }}>
                     <Chip 
                         label={`#${runner.startNo}`} 
                         size="small" 
@@ -144,15 +146,15 @@ const RunnerCard: React.FC<RunnerCardProps> = ({ runner }) => {
                 </Box>
             </Box>
 
-            <CardContent sx={{ flexGrow: 1, p: 3 }}>
-                <Grid container spacing={2}>
+            <CardContent sx={{ flexGrow: 1, p: 4 }}>
+                <Grid container spacing={3}>
                     <Grid xs={12}>
-                        <Box sx={{ width: '100%', mb: 3 }}>
-                            <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 1 }}>
-                                <Typography variant="body2" color="text.secondary">
+                        <Box sx={{ width: '100%', mb: 4 }}>
+                            <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 1.5 }}>
+                                <Typography variant="body1" color="text.secondary" sx={{ fontSize: '1.1rem' }}>
                                     Progress
                                 </Typography>
-                                <Typography variant="body2" color="text.secondary">
+                                <Typography variant="body1" color="text.secondary" sx={{ fontSize: '1.1rem' }}>
                                     {progress.toFixed(1)}%
                                 </Typography>
                             </Box>
@@ -160,7 +162,7 @@ const RunnerCard: React.FC<RunnerCardProps> = ({ runner }) => {
                                 variant="determinate" 
                                 value={progress} 
                                 sx={{ 
-                                    height: 8, 
+                                    height: 10, 
                                     borderRadius: 1,
                                     bgcolor: 'action.hover',
                                     '& .MuiLinearProgress-bar': {
@@ -173,12 +175,13 @@ const RunnerCard: React.FC<RunnerCardProps> = ({ runner }) => {
                     </Grid>
                     <Grid xs={12}>
                         <Typography 
-                            variant="subtitle1" 
+                            variant="h6" 
                             sx={{ 
-                                mb: 1,
+                                mb: 2,
                                 fontWeight: 500,
                                 color: 'text.primary',
-                                letterSpacing: '-0.01em'
+                                letterSpacing: '-0.01em',
+                                fontSize: '1.2rem'
                             }}
                         >
                             Split Times
@@ -196,10 +199,10 @@ const RunnerCard: React.FC<RunnerCardProps> = ({ runner }) => {
                             <Table size="small">
                                 <TableHead>
                                     <TableRow>
-                                        <TableCell sx={{ fontWeight: 500, bgcolor: 'action.hover' }}>Split</TableCell>
-                                        <TableCell align="right" sx={{ fontWeight: 500, bgcolor: 'action.hover' }}>Distance</TableCell>
-                                        <TableCell align="right" sx={{ fontWeight: 500, bgcolor: 'action.hover' }}>Time</TableCell>
-                                        <TableCell align="right" sx={{ fontWeight: 500, bgcolor: 'action.hover' }}>Status</TableCell>
+                                        <TableCell sx={{ fontWeight: 500, bgcolor: 'action.hover', fontSize: '1rem' }}>Split</TableCell>
+                                        <TableCell align="right" sx={{ fontWeight: 500, bgcolor: 'action.hover', fontSize: '1rem' }}>Distance</TableCell>
+                                        <TableCell align="right" sx={{ fontWeight: 500, bgcolor: 'action.hover', fontSize: '1rem' }}>Time</TableCell>
+                                        <TableCell align="right" sx={{ fontWeight: 500, bgcolor: 'action.hover', fontSize: '1rem' }}>Status</TableCell>
                                     </TableRow>
                                 </TableHead>
                                 <TableBody>
@@ -225,11 +228,11 @@ const RunnerCard: React.FC<RunnerCardProps> = ({ runner }) => {
                                                 })
                                             }}
                                         >
-                                            <TableCell component="th" scope="row">
+                                            <TableCell component="th" scope="row" sx={{ fontSize: '1rem' }}>
                                                 {split.name}
                                             </TableCell>
-                                            <TableCell align="right">{split.km.toFixed(2)} km</TableCell>
-                                            <TableCell align="right">{formatTime(split.time)}</TableCell>
+                                            <TableCell align="right" sx={{ fontSize: '1rem' }}>{split.km.toFixed(2)} km</TableCell>
+                                            <TableCell align="right" sx={{ fontSize: '1rem' }}>{formatTime(split.time)}</TableCell>
                                             <TableCell align="right">
                                                 {split.key !== 'logikfabriken' && (
                                                     <Chip 
