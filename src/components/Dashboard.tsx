@@ -12,6 +12,40 @@ const PARTICIPANT_IDS = [
     '9TG4PPOP279145'
 ];
 
+const Clock: React.FC = () => {
+    const [time, setTime] = useState(new Date());
+
+    useEffect(() => {
+        const timer = setInterval(() => {
+            setTime(new Date());
+        }, 1000);
+
+        return () => clearInterval(timer);
+    }, []);
+
+    return (
+        <Typography 
+            variant="h5" 
+            align="center"
+            sx={{ 
+                opacity: 0.9,
+                fontWeight: 500,
+                letterSpacing: '-0.01em',
+                color: '#fff',
+                textShadow: '0 2px 8px rgba(0,0,0,0.12)',
+                fontFamily: '"Inter", "Helvetica", "Arial", sans-serif'
+            }}
+        >
+            {time.toLocaleTimeString('sv-SE', { 
+                hour: '2-digit', 
+                minute: '2-digit', 
+                second: '2-digit',
+                hour12: false 
+            })}
+        </Typography>
+    );
+};
+
 const Dashboard: React.FC = () => {
     const [runners, setRunners] = useState<Runner[]>([]);
     const [loading, setLoading] = useState(true);
@@ -91,11 +125,13 @@ const Dashboard: React.FC = () => {
                             fontWeight: 500,
                             letterSpacing: '-0.01em',
                             color: '#fff',
-                            textShadow: '0 2px 8px rgba(0,0,0,0.12)'
+                            textShadow: '0 2px 8px rgba(0,0,0,0.12)',
+                            mb: 1
                         }}
                     >
                         Live Runner Tracking
                     </Typography>
+                    <Clock />
                 </Paper>
 
                 {error && (
