@@ -76,6 +76,16 @@ const RunnerCard: React.FC<RunnerCardProps> = ({ runner }) => {
                 >
                     {runner.displayName}
                 </Typography>
+                <Typography 
+                    variant="body2" 
+                    sx={{ 
+                        mb: 1,
+                        opacity: 0.9,
+                        fontWeight: 500
+                    }}
+                >
+                    Start: {new Date(runner.startDateTime).toLocaleTimeString()}
+                </Typography>
                 <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap' }}>
                     <Chip 
                         label={`#${runner.startNo}`} 
