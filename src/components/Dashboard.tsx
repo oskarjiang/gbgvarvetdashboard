@@ -3,6 +3,7 @@ import { Container, Typography, Box, CircularProgress, Grid, Paper } from '@mui/
 import { fetchRaceData } from '../services/raceService';
 import { Runner } from '../types/race';
 import RunnerCard from './RunnerCard';
+import RaceMap from './RaceMap';
 
 const PARTICIPANT_IDS = [
     '9TG4PPOP277348',
@@ -136,6 +137,8 @@ const Dashboard: React.FC = () => {
                     </Typography>
                     <Clock />
                 </Paper>
+
+                <RaceMap />
 
                 {error && (
                     <Paper 
