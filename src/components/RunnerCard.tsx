@@ -22,6 +22,8 @@ const RunnerCard: React.FC<RunnerCardProps> = ({ runner }) => {
 
     const latestSplit = getLatestSplit();
     const progress = latestSplit ? (latestSplit.km / 21.097) * 100 : 0;
+    const hasStarted = new Date(runner.startDateTime) <= new Date();
+    const isRunning = hasStarted && !runner.finishTimeNet;
 
     return (
         <Card 
@@ -32,18 +34,18 @@ const RunnerCard: React.FC<RunnerCardProps> = ({ runner }) => {
                 flexDirection: 'column',
                 transition: 'all 0.2s ease-in-out',
                 border: '1px solid',
-                borderColor: 'divider',
+                borderColor: hasStarted ? 'success.main' : 'divider',
                 '&:hover': {
                     transform: 'translateY(-2px)',
                     boxShadow: '0px 4px 8px rgba(9, 30, 66, 0.25)',
-                    borderColor: 'primary.main',
+                    borderColor: hasStarted ? 'success.main' : 'primary.main',
                 }
             }}
         >
             <Box
                 sx={{
                     p: 2,
-                    bgcolor: 'primary.main',
+                    bgcolor: hasStarted ? 'success.main' : 'primary.main',
                     color: 'primary.contrastText',
                     borderTopLeftRadius: 'inherit',
                     borderTopRightRadius: 'inherit',
@@ -65,17 +67,31 @@ const RunnerCard: React.FC<RunnerCardProps> = ({ runner }) => {
                     }
                 }}
             >
-                <Typography 
-                    variant="h5" 
-                    component="div" 
-                    sx={{ 
-                        fontWeight: 600,
-                        mb: 1,
-                        letterSpacing: '-0.01em'
-                    }}
-                >
-                    {runner.displayName}
-                </Typography>
+                <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', mb: 1 }}>
+                    <Typography 
+                        variant="h5" 
+                        component="div" 
+                        sx={{ 
+                            fontWeight: 600,
+                            letterSpacing: '-0.01em'
+                        }}
+                    >
+                        {runner.displayName}
+                    </Typography>
+                    <Chip 
+                        label={isRunning ? 'Running' : hasStarted ? 'Finished' : 'Not Started'} 
+                        size="small"
+                        color={isRunning ? 'success' : hasStarted ? 'default' : 'warning'}
+                        variant="filled"
+                        sx={{ 
+                            fontWeight: 500,
+                            bgcolor: 'rgba(255, 255, 255, 0.2)',
+                            '&:hover': {
+                                bgcolor: 'rgba(255, 255, 255, 0.3)',
+                            }
+                        }}
+                    />
+                </Box>
                 <Typography 
                     variant="body2" 
                     sx={{ 
