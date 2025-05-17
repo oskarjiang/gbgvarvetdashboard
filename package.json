@@ -51,6 +51,7 @@
     ]
   },
   "devDependencies": {
-    "@types/google.maps": "^3.58.1"
+    "@types/google.maps": "^3.58.1",
+    "@types/react-leaflet": "^2.8.3"
   }
 }

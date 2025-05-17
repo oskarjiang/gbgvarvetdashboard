@@ -1,6 +1,6 @@
 import React from 'react';
 import { MapContainer, TileLayer, Polyline, useMap } from 'react-leaflet';
-import { Paper, Box } from '@mui/material';
+import { Box } from '@mui/material';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import { goteborgsvarvet2025Route } from '../route/route';
@@ -15,15 +15,12 @@ const MapBounds = () => {
     return null;
 };
 
-const RaceMap: React.FC = () => {
+const RaceMap = () => {
     return (
-        <Paper 
-            elevation={0}
-            sx={{ 
-                mb: 4,
-                borderRadius: 1,
-                overflow: 'hidden',
-                height: 400,
+        <Box
+            sx={{
+                width: '100%',
+                height: '100%',
                 position: 'relative',
                 '& .leaflet-container': {
                     height: '100%',
@@ -32,35 +29,27 @@ const RaceMap: React.FC = () => {
                 }
             }}
         >
-            <Box
-                sx={{
-                    width: '100%',
-                    height: '100%',
-                    position: 'relative'
-                }}
+            <MapContainer
+                center={[57.7072, 11.9675]}
+                zoom={13}
+                style={{ height: '100%', width: '100%' }}
+                scrollWheelZoom={false}
             >
-                <MapContainer
-                    center={[57.7072, 11.9675]}
-                    zoom={13}
-                    style={{ height: '100%', width: '100%' }}
-                    scrollWheelZoom={false}
-                >
-                    <TileLayer
-                        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                    />
-                    <Polyline
-                        positions={goteborgsvarvet2025Route}
-                        pathOptions={{
-                            color: '#0052CC',
-                            weight: 4,
-                            opacity: 1
-                        }}
-                    />
-                    <MapBounds />
-                </MapContainer>
-            </Box>
-        </Paper>
+                <TileLayer
+                    attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                />
+                <Polyline
+                    positions={goteborgsvarvet2025Route}
+                    pathOptions={{
+                        color: '#0052CC',
+                        weight: 4,
+                        opacity: 1
+                    }}
+                />
+                <MapBounds />
+            </MapContainer>
+        </Box>
     );
 };
 

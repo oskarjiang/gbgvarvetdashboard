@@ -143,8 +143,6 @@ const Dashboard: React.FC = () => {
                     <Clock />
                 </Paper>
 
-                <RaceMap />
-
                 {error && (
                     <Paper 
                         sx={{ 
@@ -165,10 +163,69 @@ const Dashboard: React.FC = () => {
                     </Box>
                 ) : (
                     <Grid container spacing={4}>
+                        <Grid size={{ xs: 12, md: 6, lg: 4 }}>
+                            <Paper 
+                                elevation={1}
+                                sx={{ 
+                                    height: '100%',
+                                    display: 'flex',
+                                    flexDirection: 'column',
+                                    transition: 'all 0.2s ease-in-out',
+                                    border: '1px solid',
+                                    borderColor: 'divider',
+                                    '&:hover': {
+                                        transform: 'translateY(-2px)',
+                                        boxShadow: '0px 4px 8px rgba(9, 30, 66, 0.25)',
+                                        borderColor: 'primary.main',
+                                    }
+                                }}
+                            >
+                                <Box
+                                    sx={{
+                                        p: 3,
+                                        bgcolor: 'primary.main',
+                                        color: 'primary.contrastText',
+                                        borderTopLeftRadius: 'inherit',
+                                        borderTopRightRadius: 'inherit',
+                                        position: 'relative',
+                                        overflow: 'hidden',
+                                        backgroundImage: 'url(/bg-pattern.png)',
+                                        backgroundSize: 'cover',
+                                        backgroundPosition: 'center',
+                                        backgroundRepeat: 'no-repeat',
+                                        '&::after': {
+                                            content: '""',
+                                            position: 'absolute',
+                                            top: 0,
+                                            right: 0,
+                                            bottom: 0,
+                                            left: 0,
+                                            background: 'linear-gradient(45deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 100%)',
+                                            pointerEvents: 'none'
+                                        }
+                                    }}
+                                >
+                                    <Typography 
+                                        variant="h5" 
+                                        component="div" 
+                                        sx={{ 
+                                            fontWeight: 600,
+                                            letterSpacing: '-0.01em',
+                                            fontSize: '1.5rem'
+                                        }}
+                                    >
+                                        Race Route
+                                    </Typography>
+                                </Box>
+                                <Box sx={{ flexGrow: 1, p: 0, height: 400 }}>
+                                    <RaceMap />
+                                </Box>
+                            </Paper>
+                        </Grid>
                         {[...runners]
                             .sort((a, b) => new Date(a.startDateTime).getTime() - new Date(b.startDateTime).getTime())
                             .map((runner) => (
-                                <Grid key={runner.idParticipant} size={{ xs: 12, md: 6, lg: 4, xl: 2.4 }}>
+                                <Grid key={runner.idParticipant} size={{ xs: 12, md: 6, lg: 4 }}>
                                     <RunnerCard runner={runner} />
                                 </Grid>
                             ))}
