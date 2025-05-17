@@ -1,54 +1,54 @@
 import React from 'react';
-import { MapContainer, TileLayer, Polyline, useMap } from 'react-leaflet';
-import { Box } from '@mui/material';
-import L from 'leaflet';
-import 'leaflet/dist/leaflet.css';
-import { goteborgsvarvet2025Route } from '../route/route';
-
-// Component to handle map bounds
-const MapBounds = () => {
-    const map = useMap();
-    React.useEffect(() => {
-        const bounds = L.latLngBounds(goteborgsvarvet2025Route);
-        map.fitBounds(bounds, { padding: [50, 50] });
-    }, [map]);
-    return null;
-};
+import { Box, Paper, Typography } from '@mui/material';
 
 const RaceMap = () => {
     return (
         <Box
             sx={{
                 width: '100%',
-                height: '100%',
+                height: '100%',  // Take full height of parent container
                 position: 'relative',
-                '& .leaflet-container': {
-                    height: '100%',
-                    width: '100%',
-                    zIndex: 1
-                }
+                overflow: 'hidden',
+                borderRadius: 1
             }}
         >
-            <MapContainer
-                center={[57.7072, 11.9675]}
-                zoom={13}
-                style={{ height: '100%', width: '100%' }}
-                scrollWheelZoom={false}
+            <Paper
+                elevation={0}
+                sx={{
+                    width: '100%',
+                    height: '100%',
+                    borderRadius: 1,
+                    overflow: 'hidden',
+                    border: '1px solid',
+                    borderColor: 'divider'
+                }}
             >
-                <TileLayer
-                    attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                />
-                <Polyline
-                    positions={goteborgsvarvet2025Route}
-                    pathOptions={{
-                        color: '#0052CC',
-                        weight: 4,
-                        opacity: 1
+                <Typography 
+                    variant="subtitle1"
+                    sx={{ 
+                        p: 1.5,
+                        fontWeight: 500,
+                        borderBottom: '1px solid',
+                        borderColor: 'divider',
+                        bgcolor: 'background.paper'
                     }}
+                >
+                    Official Göteborgsvarvet 2025 Tracking Map
+                </Typography>
+                <Box
+                    component="iframe"
+                    src="https://goteborgsvarvet.r.mikatiming.com/2025/?pid=tracking&pidp=tracking"
+                    sx={{
+                        border: 'none',
+                        width: '100%',
+                        height: 'calc(100% - 48px)',  // Subtract the header height
+                        display: 'block',
+                    }}
+                    title="Göteborgsvarvet 2025 Live Tracking"
+                    allowFullScreen
+                    loading="lazy"
                 />
-                <MapBounds />
-            </MapContainer>
+            </Paper>
         </Box>
     );
 };

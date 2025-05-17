@@ -163,7 +163,7 @@ const Dashboard: React.FC = () => {
                     </Box>
                 ) : (
                     <Grid container spacing={4}>
-                        <Grid size={{ xs: 12, md: 6, lg: 4 }}>
+                        <Grid size={{ xs: 12 }}>
                             <Paper 
                                 elevation={1}
                                 sx={{ 
@@ -217,7 +217,7 @@ const Dashboard: React.FC = () => {
                                         Race Route
                                     </Typography>
                                 </Box>
-                                <Box sx={{ flexGrow: 1, p: 0, height: 400 }}>
+                                <Box sx={{ flexGrow: 1, p: 0, height: 500 }}>
                                     <RaceMap />
                                 </Box>
                             </Paper>
@@ -225,7 +225,7 @@ const Dashboard: React.FC = () => {
                         {[...runners]
                             .sort((a, b) => new Date(a.startDateTime).getTime() - new Date(b.startDateTime).getTime())
                             .map((runner) => (
-                                <Grid key={runner.idParticipant} size={{ xs: 12, md: 6, lg: 4 }}>
+                                <Grid key={runner.idParticipant} size={{ xs: 12, sm: 6, md: 4 }}>
                                     <RunnerCard runner={runner} />
                                 </Grid>
                             ))}
