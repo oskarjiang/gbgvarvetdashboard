@@ -143,6 +143,32 @@ const RunnerCard: React.FC<RunnerCardProps> = ({ runner }) => {
                             }
                         }}
                     />
+                    <Chip 
+                        label={`Age: ${runner.ageOnRaceDay}`} 
+                        size="small" 
+                        variant="outlined"
+                        sx={{ 
+                            fontWeight: 500,
+                            color: 'rgba(255, 255, 255, 0.9)',
+                            borderColor: 'rgba(255, 255, 255, 0.3)',
+                            '&:hover': {
+                                borderColor: 'rgba(255, 255, 255, 0.5)',
+                            }
+                        }}
+                    />
+                    <Chip 
+                        label={`ID: ${runner.idParticipant.slice(-6)}`} 
+                        size="small" 
+                        variant="outlined"
+                        sx={{ 
+                            fontWeight: 500,
+                            color: 'rgba(255, 255, 255, 0.9)',
+                            borderColor: 'rgba(255, 255, 255, 0.3)',
+                            '&:hover': {
+                                borderColor: 'rgba(255, 255, 255, 0.5)',
+                            }
+                        }}
+                    />
                 </Box>
             </Box>
 
