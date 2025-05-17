@@ -1,7 +1,7 @@
 import React from 'react';
 import { MapContainer, TileLayer, Polyline, useMap } from 'react-leaflet';
 import { Paper, Box } from '@mui/material';
-import L, { LatLngTuple } from 'leaflet';
+import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import { goteborgsvarvet2025Route } from '../route/route';
 
