@@ -114,7 +114,12 @@ const RunnerCard: React.FC<RunnerCardProps> = ({ runner }) => {
                         fontSize: '1.1rem'
                     }}
                 >
-                    Start: {new Date(runner.startDateTime).toLocaleTimeString()}
+                    Start: {new Date(runner.startDateTime).toLocaleTimeString('sv-SE', {
+                        hour: '2-digit',
+                        minute: '2-digit',
+                        second: '2-digit',
+                        hour12: false
+                    })}
                 </Typography>
                 <Box sx={{ display: 'flex', gap: 1.5, flexWrap: 'wrap' }}>
                     <Chip 
