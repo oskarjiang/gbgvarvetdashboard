@@ -33,9 +33,9 @@ const formatTime = (time: number): string => {
 
 const RunnerCard: React.FC<RunnerCardProps> = ({ runner }) => {
   const getLatestSplit = () => {
-    const completedSplits = runner.splits.filter((split) => split.time > 0);
-    return completedSplits.length > 0
-      ? completedSplits[completedSplits.length - 1]
+    const actualCompletedSplits = runner.splits.filter((split) => split.time > 0 && !split.estimated);
+    return actualCompletedSplits.length > 0
+      ? actualCompletedSplits[actualCompletedSplits.length - 1]
       : null;
   };
 
