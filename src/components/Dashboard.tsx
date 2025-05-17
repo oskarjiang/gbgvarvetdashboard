@@ -52,7 +52,16 @@ const Dashboard: React.FC = () => {
         try {
             setLoading(true);
             const response = await fetchRaceData(PARTICIPANT_IDS);
-            setRunners(response.results);
+            const modifiedRunners = response.results.map(runner => {
+                if (runner.displayName === "Martin Cronholm") {
+                    return {
+                        ...runner,
+                        displayName: "Martin Cronholm (Samuel Schön)"
+                    };
+                }
+                return runner;
+            });
+            setRunners(modifiedRunners);
             setError(null);
         } catch (err) {
             setError('Failed to fetch race data');
