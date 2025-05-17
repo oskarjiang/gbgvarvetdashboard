@@ -148,7 +148,7 @@ const RunnerCard: React.FC<RunnerCardProps> = ({ runner }) => {
 
             <CardContent sx={{ flexGrow: 1, p: 4 }}>
                 <Grid container spacing={3}>
-                    <Grid xs={12}>
+                    <Grid size={{ xs: 12 }}>
                         <Box sx={{ width: '100%', mb: 4 }}>
                             <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 1.5 }}>
                                 <Typography variant="body1" color="text.secondary" sx={{ fontSize: '1.1rem' }}>
@@ -173,7 +173,7 @@ const RunnerCard: React.FC<RunnerCardProps> = ({ runner }) => {
                             />
                         </Box>
                     </Grid>
-                    <Grid xs={12}>
+                    <Grid size={{ xs: 12 }}>
                         <Typography 
                             variant="h6" 
                             sx={{ 

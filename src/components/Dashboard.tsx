@@ -163,7 +163,7 @@ const Dashboard: React.FC = () => {
                         {[...runners]
                             .sort((a, b) => new Date(a.startDateTime).getTime() - new Date(b.startDateTime).getTime())
                             .map((runner) => (
-                                <Grid key={runner.idParticipant} xs={12} md={6} lg={4} xl={2.4}>
+                                <Grid key={runner.idParticipant} size={{ xs: 12, md: 6, lg: 4, xl: 2.4 }}>
                                     <RunnerCard runner={runner} />
                                 </Grid>
                             ))}
